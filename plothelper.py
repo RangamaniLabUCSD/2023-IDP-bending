@@ -51,6 +51,7 @@ print("Matplotlib Version:", mpl.__version__)
 plt.style.use("seaborn-colorblind")  # set plot style
 mpl.rcParams["font.sans-serif"] = "Arial"
 mpl.rcParams["font.family"] = "sans-serif"
+# mpl.rcParams["mathtext.fontset"] = "cm"
 
 DARK_GREY = (0.1, 0.1, 0.1)
 THINNER_LINE = 0.5

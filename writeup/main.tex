@@ -1,0 +1,157 @@
+\documentclass[11pt]{article}
+%---------------------------------
+% Set page dimensions
+%---------------------------------
+\usepackage[margin=1in]{geometry}
+% \setlength{\parindent}{0em}
+\setlength{\parskip}{0em}
+%=================================
+
+% \usepackage[T1]{fontenc}
+% \usepackage[utf8]{inputenc}
+% \usepackage{times}
+% \usepackage{helvet}
+
+%---------------------------------
+% Font options
+%---------------------------------
+\usepackage{fontspec}
+\setmainfont{Arial}
+
+\usepackage[style=science, doi=true, backend=biber]{biblatex}
+\setlength{\bibitemsep}{1pt}
+% \renewcommand\bibfont{\normalfont\scriptsize}
+\addbibresource{ref.bib}
+
+\usepackage{graphicx}
+\usepackage{float}
+\PassOptionsToPackage{hyphens}{url}\usepackage[colorlinks=false]{hyperref}
+\usepackage{bookmark}
+\usepackage[all]{hypcap}
+\usepackage[version=4]{mhchem}
+\usepackage[capitalise]{cleveref}
+
+\usepackage{wrapfig}
+\setlength{\intextsep}{4.0pt plus 2.0pt minus 2.0pt}%
+\setlength{\columnsep}{8pt}%
+
+\usepackage{sidecap}
+\usepackage{subcaption}
+\usepackage[labelfont={bf,footnotesize}, textfont=footnotesize, skip=8pt plus 2pt minus 2pt]{caption}
+
+\usepackage{mathtools} % should load amsmath
+% \usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{xspace}
+\usepackage{changepage}
+
+
+\usepackage{lineno}
+\linenumbers
+
+\usepackage{array}
+\usepackage{booktabs}  % Nice tables!
+\usepackage{multicol}
+\usepackage{multirow}
+\renewcommand{\arraystretch}{1.2}
+
+\usepackage{siunitx}
+\DeclareSIUnit{\molecule}{molecule}
+\DeclareSIUnit{\molecules}{molecule}
+\DeclareSIUnit\molar{\mole\per\cubic\deci\metre}
+\DeclareSIUnit\Molar{\textsc{M}}
+\sisetup{
+    separate-uncertainty=true,
+    detect-all, 
+    range-phrase = --,
+    list-units = single,
+    range-units = single,
+	group-digits = integer,
+}
+
+\usepackage[shortlabels]{enumitem}
+\setlist{nosep} 
+
+\usepackage[dvipsnames, table]{xcolor}
+
+\usepackage[color=green!20]{todonotes}
+\newcommand{\Red}[1]{{\color{red}#1}}
+\newcommand{\Blue}[1]{{\color{blue}#1}}
+\newcommand{\ctl}[1]{{\color{RubineRed}CTL: #1}}
+
+\newcommand{\needref}[0]{\textcolor{red}{[REFS]}}
+\newcommand{\thinsim}{{\raise.17ex\hbox{\(\scriptstyle\mathtt{\sim}\)}}}
+
+%%%%%%%%%%%%%%%%%% ACRONYM SUPPORT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Learn more here: https://www.overleaf.com/learn/latex/glossaries
+\usepackage[acronym, nonumberlist, nopostdot, nogroupskip, numberedsection=false]{glossaries}
+% \setlength{\glsdescwidth}{0.8\textwidth}
+
+\setacronymstyle{long-short}
+\makeglossaries{}
+\newacronym{md}{MD}{Molecular Dynamics}
+
+
+\newcommand{\ep}{\epsilon}
+
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\ee}{\mathrm{e}}
+
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\defn}{\stackrel{\text{def}}{=}}
+
+\begin{document}
+\begin{centering}
+    \textbf{\Large Notes on derivation of tube radius}\\[3mm]
+    \textbf{Christopher T. Lee, Padmini Rangamani}\\[1mm]
+\end{centering}
+
+Following the approach outlined by Refs.~\cite{DerenyiEtAl2002,ShurerEtAl2019}.
+The general form of the energy of a membrane with an external force \(f\) acting over length \(L\) is,
+\begin{equation}
+    F = \int_A \left[\frac{\kappa}{2}(2H - c_0)^2 \sigma \right]dA - pV - fL.
+\end{equation}
+Where \(H\) is the mean curvature give by \((c_1 + c_2)/2\)
+In the special case of a cylinder which has \(c_1 = 1/R\) and \(c_2 = 0\), assuming that \(p=0\), and \(f\neq 0\),
+\begin{equation}
+    F = \left[ \frac{\kappa}{2} \left(\frac{1}{R} - c_0\right)^2 + \sigma\right] 2\pi RL - fL.
+\end{equation}
+
+At equilibrium the energies are minimized with respect to the radius and length of the tube such that
+\begin{equation}
+    \frac{\partial F}{\partial R} = 0,\quad \frac{F}{\partial L} =0.
+\end{equation}
+Considering first the minimization with respect to the radius,
+\begin{align*}
+    0 = \frac{\partial F}{\partial R} & = 2\pi L\left[\frac{-\kappa}{2R^2} + \frac{\kappa c_0^2}{2} + \sigma\right] \\
+                                      & = - \frac{\kappa}{R^2} + \kappa c_0^2 + 2\sigma
+\end{align*}
+Thus,
+\begin{equation}
+    \boxed{R = \frac{1}{\sqrt{c_0^2 + 2\sigma/\kappa}}}
+\end{equation}
+
+We derive a few useful relationships for the following derivation,
+\begin{equation}
+    R^{-2} = c_0^2 + \frac{2\sigma}{\kappa}, \qquad \frac{\kappa}{R^2} = \kappa c_0^2 + 2\sigma
+\end{equation}
+
+Returning to the minimization with respect to length and substituting the equilibrium radius,
+
+\begin{align*}
+    0 = \frac{\partial F}{\partial L} & = \left[ \frac{\kappa}{2} \left(\frac{1}{R} - c_0\right)^2 + \sigma\right] 2\pi R - f                                                           \\
+    f                                 & = 2\pi \left[ \frac{\kappa}{2}\left( \frac{1}{R} - 2 c_0 + c_0^2 R\right) + \sigma R\right]                                                     \\
+                                      & = 2 \pi R \left[ \frac{\kappa}{2R^2}- \frac{\kappa c_0}{R}  + \frac{\kappa c_0^2}{2} + \sigma\right]                                            \\
+                                      & = 2 \pi R \left[ \frac{\kappa}{2} \left(c_0^2 + \frac{2\sigma}{\kappa}\right) - \frac{\kappa c_0}{R}   + \frac{\kappa c_0^2}{2} + \sigma\right] \\
+                                      & = 2\pi R \left[\kappa c_0^2 - \frac{\kappa c_0}{R}  + 2 \sigma\right]                                                                           \\
+                                      & = 2\pi R\left[\frac{\kappa}{R^2} - \frac{\kappa c_0}{R}\right]
+\end{align*}
+Thus,
+\begin{equation}
+    \boxed{  f=  2\pi \kappa \left(\sqrt{c_0^2 + 2\sigma/\kappa}- c_0\right)}
+\end{equation}
+\printbibliography
+\end{document}
