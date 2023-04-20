@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: If you use this software, please cite it as below.
+title: The ins and outs of membrane bending by intrinsically disordered proteins 
+abstract: Simple mechanical model for membrane curvature induced by IDPS
+authors:
+- family-names: Yuan
+  given-names: Feng
+- family-names: Lee
+  given-names: Christopher T.
+  orcid: https://orcid.org/0000-0002-0670-2308
+- family-names: Houser
+  given-names: Justin R.
+- family-names: Sangani
+  given-names: Arjun
+- family-names: Wang
+  given-names: Liping
+- family-names: Lafer
+  given-names: Eileen M.
+- family-names: Rangamani
+  given-names: Padmini
+  orcid: https://orcid.org/0000-0001-5953-4347
+version: 0.0.1
+doi: 10.5281/zenodo.7851122
+date-released: 2023-04-20
+url: https://github.com/RangamaniLabUCSD/2023-IDP-bending
